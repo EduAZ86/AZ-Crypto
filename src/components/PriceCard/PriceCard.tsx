@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { CoinDataDetail } from "../../types";
-import { font_color, secondary_color } from "../../constants/colors";
+import { font_color, highlight_color_rgb, secondary_color } from "../../constants/colors";
 import { roboto_bold, roboto_light, roboto_regular } from "../../constants/fonts";
 import { Dimensions } from "react-native";
 
@@ -44,11 +44,12 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'space-around',
-        borderColor:secondary_color,
+        justifyContent:'space-around',  
         borderWidth:1,
         borderRadius:12,
         padding:5,
+        borderColor:`rgba(${highlight_color_rgb},0.3)`,
+        
        
     },   
     priceContainer:{      

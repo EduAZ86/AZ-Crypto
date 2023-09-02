@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { CoinDataDetail } from "../../types";
-import { font_color, primary_color, secondary_color } from "../../constants/colors";
+import { font_color, highlight_color_rgb, primary_color, secondary_color } from "../../constants/colors";
 import { roboto_regular } from "../../constants/fonts";
 
 const MoreAboutCoin:React.FC <CoinDataDetail> = ({
@@ -108,6 +108,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: primary_color,
         borderRadius: 12,
+        borderColor:`rgba(${highlight_color_rgb},0.3)`,
+        borderWidth:0.5,    
         marginVertical:5,
         alignItems:'center',
         justifyContent:'space-between',
@@ -134,6 +136,8 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         marginVertical:5,
         padding:5,
+        borderWidth:0.5,
+        borderColor:`rgba(${highlight_color_rgb},0.3)`,
     },
     descriptionTitle:{
         fontFamily:roboto_regular,
