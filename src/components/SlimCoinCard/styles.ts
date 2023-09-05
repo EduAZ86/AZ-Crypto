@@ -9,9 +9,11 @@ export const commonStyles = (currentTheme:ColorPalette) => {
             paddingHorizontal:10,
             display:'flex',
             flexDirection:'row',
-            backgroundColor:currentTheme.secondary_color,
-            marginVertical:1,
-            alignItems:'center',       
+            backgroundColor:currentTheme.primary_color,          
+            alignItems:'center',
+            borderColor:currentTheme.secondary_color,
+            borderBottomWidth:0.5,
+            borderTopWidth:0.5      
         },
         rank:{
             color:currentTheme.font_color,

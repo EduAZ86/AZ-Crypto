@@ -14,7 +14,7 @@ export const commonStyles = (currentTheme:ColorPalette) => {
             borderRadius:12,
             padding:5,
             borderColor:`rgba(${currentTheme.rgbHighlight},0.3)`,
-            
+            marginTop:5
            
         },   
         priceContainer:{      

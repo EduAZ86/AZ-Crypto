@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native"
-import { Palette } from "../../types"
+import { ColorPalette } from "../../types"
 import { roboto_regular } from "../../constants/fonts"
-export const commonStyles = (currentTheme:Palette) => {
+export const commonStyles = (currentTheme:ColorPalette) => {
     return  StyleSheet.create({
         container:{   
             height:'50%',      
@@ -35,14 +35,14 @@ export const commonStyles = (currentTheme:Palette) => {
             fontFamily:roboto_regular,
             color:currentTheme.font_color,
             fontSize:13,
-            opacity:0.5,
+            opacity:0.9,
             textAlign:'left'
         },
         slimData:{
             fontFamily:roboto_regular,
             color:currentTheme.font_color,
             fontSize:16,
-            opacity:0.5,
+            opacity:0.9,
             textAlign:'right'
         },
         descriptionContainer:{
@@ -58,14 +58,14 @@ export const commonStyles = (currentTheme:Palette) => {
             fontFamily:roboto_regular,
             color:currentTheme.font_color,
             fontSize:13,
-            opacity:0.8,
+            opacity:1,
             textAlign:'left'
         },
         descriptionText:{
             fontFamily:roboto_regular,
             color:currentTheme.font_color,
             fontSize:11,
-            opacity:0.5,
+            opacity:1,
             textAlign:'justify'
         }
     })

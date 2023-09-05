@@ -11,17 +11,34 @@ export const commonStyles = (currentTheme:ColorPalette, widthContainer?:number) 
             display:'flex',
             flexDirection:'row',
             alignItems:'center',
-            justifyContent:'center',
+            justifyContent:'flex-start',
             gap:5
         },
         image:{
-            width:30,
+            width:45,
             height:30,
         },
         name:{
-            color: currentTheme.highlight_color,
+            color: '#b2484c',
             fontSize:16,
             fontFamily: roboto_bold
+        },
+        switchContainer:{
+            display:'flex',
+            flexDirection:'row',     
+            width:'20%',
+            justifyContent:'flex-start'
+            
+            
+        },
+        logoContainer:{
+            position:'absolute',
+            display:'flex',
+            flexDirection:'column',
+            left:'40%',          
+            width:'20%',
+            justifyContent:'center',
+            alignItems:'center'
         } 
     
     })

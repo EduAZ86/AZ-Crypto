@@ -6,6 +6,7 @@ import { Dimensions } from "react-native";
 import { commonStyles } from "./styles";
 import { ThemeContext } from "../../themes/ThemeContext";
 
+
 const Graph: React.FC<LineChartProps> = ({data,labels}) => {
   const contanierWidth = Dimensions.get("window").width;
   const {currentTheme} = useContext(ThemeContext)
@@ -60,8 +61,9 @@ const Graph: React.FC<LineChartProps> = ({data,labels}) => {
 
             
             
-            color: () => `rgba(${currentTheme.rgbHighlight}, ${0.8})`,
-            labelColor: () => `rgba(${currentTheme.rgbFontColor}, ${0.8})`,
+            color: () => `rgba(${currentTheme.rgbHighlight}, ${0.9})`,
+            labelColor: () => currentTheme.primary_color,           
+            
             style: {
               borderRadius: 16,
               
