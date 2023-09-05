@@ -5,7 +5,7 @@ export const commonStyles = (currentTheme:ColorPalette) => {
     return StyleSheet.create({
         container:{
             flex:1,
-            backgroundColor: currentTheme.highlight_color
+            backgroundColor: currentTheme.primary_color
         },         
     })
 
