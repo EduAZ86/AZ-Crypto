@@ -31,7 +31,7 @@ const Detail = () => {
                 if (data) {
                     setDataCoin(data)
                 }
-                console.log(data);
+                console.log(data)
             } catch (error) {
                 setDataCoin(data_Coin)
             }
@@ -40,15 +40,15 @@ const Detail = () => {
        getDataCoin()
         
         
-        const intervalId = setInterval(getDataCoin, 30000);    
+        const intervalId = setInterval(getDataCoin, 30000)    
         return () => {
             setDataCoin(data_Coin)
-            clearInterval(intervalId);
-        };
+            clearInterval(intervalId)
+        }
     }, [])  
     
 
-    const navigation = useNavigation();
+    const navigation = useNavigation()
     
     React.useLayoutEffect(() => {
         navigation.setOptions({
@@ -60,31 +60,31 @@ const Detail = () => {
                     image={data_Coin.image}
                 />
             ),
-        });
-    }, [navigation, data_Coin.symbol, data_Coin.name, data_Coin.image]);   
+        })
+    }, [navigation, data_Coin.symbol, data_Coin.name, data_Coin.image])   
     const labels = ['']
 
   
 
     const [pressButton, setPressButton] = useState<number>(0)
     
-    const [priceHistoryCoin, setPriceHistoryCoin] = useState<HistoryPriceCoin>([0]);
+    const [priceHistoryCoin, setPriceHistoryCoin] = useState<HistoryPriceCoin>([0])
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const days: string = DAYS[pressButton];
-                const response = await fetchDataHistoryCoin(days);
-                response && setPriceHistoryCoin(response);
+                const days: string = DAYS[pressButton]
+                const response = await fetchDataHistoryCoin(days)
+                response && setPriceHistoryCoin(response)
             } catch (error) {
-                console.error(error);
+                console.error(error)
             }
-        };    
-        fetchData();
+        }    
+        fetchData()
         return () => {
             setPriceHistoryCoin([])
           }
-    }, [pressButton]);
+    }, [pressButton])
 
     
 

@@ -1,7 +1,7 @@
-import React, {useContext, useState} from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import { commonStyles } from "./styles";
-import { ThemeContext } from "../../themes/ThemeContext";
+import React, {useContext, useState} from "react"
+import { Text, TextInput, TouchableOpacity, View } from "react-native"
+import { commonStyles } from "./styles"
+import { ThemeContext } from "../../themes/ThemeContext"
 
 const Header = ({handleImputText, inputText}:any ) => {
     const {currentTheme} = useContext(ThemeContext)

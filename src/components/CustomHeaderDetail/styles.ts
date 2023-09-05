@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native"
 import { roboto_bold, roboto_regular } from "../../constants/fonts"
-import { Palette } from "../../types"
+import { ColorPalette } from "../../types"
 
-export const commonStyles = (currentTheme:Palette) => {
+export const commonStyles = (currentTheme:ColorPalette) => {
     return StyleSheet.create({
         container:{
             flex: 0.80,

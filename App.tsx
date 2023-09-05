@@ -1,15 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Routes from './src/routes/Routes';
+import { StatusBar } from 'expo-status-bar'
+import { StyleSheet, Text, View } from 'react-native'
+import Routes from './src/routes/Routes'
 import{useFonts} from 'expo-font'
-import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from 'react';
-import { ThemeContext, ThemeProvider } from './src/themes/ThemeContext';
-import React from 'react';
-import { lightPalette } from './src/themes/palettes';
+import * as SplashScreen from 'expo-splash-screen'
+import { useCallback } from 'react'
+import { ThemeContext, ThemeProvider } from './src/themes/ThemeContext'
+import React from 'react'
+import { lightPalette } from './src/themes/palettes'
 
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync()
 export default function App() {
 
   const currentTheme = React.useContext(ThemeContext).currentTheme || lightPalette
@@ -51,7 +51,7 @@ export default function App() {
         <StatusBar style="auto" />
       </View>
     </ThemeProvider>
-  );
+  )
 }
 
 

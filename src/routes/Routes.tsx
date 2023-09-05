@@ -28,11 +28,10 @@ const Routes = () => {
         
         },
         headerTintColor: currentTheme.highlight_color
-    }
-    
-    const headerLeftCustom = {
-        backgroundColor:currentTheme.font_color
-    }
+    }    
+    // const headerLeftCustom = {
+    //     backgroundColor:currentTheme.font_color
+    // }
     return(   
             <NavigationContainer>
                 <Stack.Navigator initialRouteName='Home'>

@@ -1,9 +1,9 @@
-import React, { useEffect, useState} from "react";
-import {  Text, View } from "react-native";
-import { CoinDataDetail } from "../../types";
+import React, { useEffect, useState} from "react"
+import {  Text, View } from "react-native"
+import { CoinDataDetail } from "../../types"
 
-import { commonStyles } from "./styles";
-import { ThemeContext } from "../../themes/ThemeContext";
+import { commonStyles } from "./styles"
+import { ThemeContext } from "../../themes/ThemeContext"
 
 const PriceCard: React.FC<CoinDataDetail> = ({ current_price }) => {
 
@@ -11,28 +11,28 @@ const PriceCard: React.FC<CoinDataDetail> = ({ current_price }) => {
     const styles = commonStyles(currentTheme)
 
 
-  const [previousPrice, setPreviousPrice] = useState<number | null>(null);
-  const [currentPrice, setCurrentPrice] = useState<number | null>(null);
-  const [priceChangePercentage, setPriceChangePercentage] = useState<number | null>(null);
+  const [previousPrice, setPreviousPrice] = useState<number | null>(null)
+  const [currentPrice, setCurrentPrice] = useState<number | null>(null)
+  const [priceChangePercentage, setPriceChangePercentage] = useState<number | null>(null)
 
   useEffect(() => {
 
     if (previousPrice && currentPrice) {
-      const changePercentage = ((currentPrice - previousPrice) / previousPrice) * 100;
-      setPriceChangePercentage(changePercentage);
+      const changePercentage = ((currentPrice - previousPrice) / previousPrice) * 100
+      setPriceChangePercentage(changePercentage)
     }
 
-    setPreviousPrice(currentPrice);
+    setPreviousPrice(currentPrice)
     if (current_price) {
-        setCurrentPrice(current_price);        
+        setCurrentPrice(current_price)        
     }
 
     return () => {
-      setPreviousPrice(null);
-      setCurrentPrice(null);
-      setPriceChangePercentage(null);
-    };
-  }, [current_price]);
+      setPreviousPrice(null)
+      setCurrentPrice(null)
+      setPriceChangePercentage(null)
+    }
+  }, [current_price])
 
   return (
         <View

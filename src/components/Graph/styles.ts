@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native"
 import { roboto_bold, roboto_regular } from "../../constants/fonts"
-import { Palette } from "../../types"
+import { ColorPalette } from "../../types"
 
-export const commonStyles = (currentTheme:Palette,contanierWidth:number) => {
+export const commonStyles = (currentTheme:ColorPalette,contanierWidth:number) => {
     return StyleSheet.create({
         container:{
             width:contanierWidth,

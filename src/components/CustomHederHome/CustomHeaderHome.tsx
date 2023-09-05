@@ -1,8 +1,8 @@
-import React, {useContext} from "react";
-import { Dimensions, Image, Switch, Text, View } from "react-native";
+import React, {useContext} from "react"
+import { Dimensions, Image, Switch, Text, View } from "react-native"
 
-import { commonStyles } from "./styles";
-import { ThemeContext } from "../../themes/ThemeContext";
+import { commonStyles } from "./styles"
+import { ThemeContext } from "../../themes/ThemeContext"
 
 
 

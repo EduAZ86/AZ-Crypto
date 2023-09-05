@@ -6,6 +6,9 @@ export const GET_DATA_COIN_URL = 'https://api.coingecko.com/api/v3/coins'
 export const GET_HISTORY_COIN_URL = 'https://api.coingecko.com/api/v3/coins'
 
 
+export const GET_GLOBAL_DATA = 'https://api.coingecko.com/api/v3/global'
+
+
 
 
 

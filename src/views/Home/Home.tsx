@@ -1,14 +1,13 @@
 import React,{useEffect, useState} from 'react'
 import { FlatList, View } from 'react-native'
 import Header from '../../components/Header/Header'
-import { CoinDataShort } from '../../types'
-import { getAllDataCoins } from '../../utils/fetching/fetching'
+import { CoinDataShort, GlobalDataType } from '../../types'
+import { getAllDataCoins, getGlobalData } from '../../utils/fetching/fetching'
 
 import SlimCoinCard from '../../components/SlimCoinCard/SlimCoinCard'
 
 import { commonStyles } from './styles'
 import { ThemeContext } from '../../themes/ThemeContext'
-
 const Home = () => {
 
     const {currentTheme} = React.useContext(ThemeContext)
@@ -16,18 +15,25 @@ const Home = () => {
     const [inputText, setInputText] = useState<string>('')
     const [allCoinsDataShort, setAllCoinsDataShort] = useState<CoinDataShort[]>([])
     const [resultSearch, setResultSearch] = useState<CoinDataShort[]>([])
-
+    const [globalData, setGlobalData] = useState<GlobalDataType>({})
     const loadDataCoins = async () =>{
         try {
-            const allDataResponse = await getAllDataCoins()                                               
+            const allDataResponse = await getAllDataCoins()
+            const globalDataResponse = await getGlobalData()
+            if (globalDataResponse) {
+                setGlobalData(globalDataResponse)
+            }                                               
             setAllCoinsDataShort(allDataResponse)
-            setResultSearch(allDataResponse)                          
+            if (inputText === '') {
+                setResultSearch(allDataResponse) 
+            }
         } catch (error) {
             setAllCoinsDataShort([])
         }
     }
     useEffect(() => { 
             loadDataCoins()
+
               
         const intervalId = setInterval(loadDataCoins, 30000);    
     return () => {
@@ -42,10 +48,10 @@ const Home = () => {
 
     const onSearch = (inputText: string) => {
         if (inputText === '') {
-            // Si el cuadro de búsqueda está vacío, muestra todos los resultados
+            
             setResultSearch(allCoinsDataShort)
         } else {
-            // Filtra los resultados basados en la búsqueda
+
             const results = allCoinsDataShort.filter((item) =>
             item.name?.toLowerCase().includes(inputText.toLowerCase()) ||
             item.symbol?.toLowerCase().includes(inputText.toLowerCase())
@@ -70,7 +76,8 @@ const Home = () => {
             <Header
                 handleImputText={handleImputText}
                 inputText = {inputText}
-           
+                allCoinsDataShort={allCoinsDataShort}
+                globalData={globalData}
             />           
             <FlatList             
                 data={resultSearch}

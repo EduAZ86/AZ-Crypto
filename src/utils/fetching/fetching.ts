@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { GET_ALL_COINS_DATA_URL, GET_DATA_COIN_URL, GET_HISTORY_COIN_URL } from '../../constants/urls'
-import { CoinDataDetail, HistoryPriceCoin } from '../../types'
+import { GET_ALL_COINS_DATA_URL, GET_DATA_COIN_URL, GET_GLOBAL_DATA, GET_HISTORY_COIN_URL } from '../../constants/urls'
+import { CoinDataDetail, GlobalDataType, HistoryPriceCoin } from '../../types'
 
 
 export const getAllDataCoins = async () => {
@@ -8,7 +8,7 @@ export const getAllDataCoins = async () => {
         const response = await axios.get(`${GET_ALL_COINS_DATA_URL}`)
         return response.data        
     } catch (error) {
-        console.log(error);        
+        console.log(error)       
     }
 }
 
@@ -42,7 +42,7 @@ export const getDetailCoin = async (idCoin:string) => {
         }
         return dataCoin
     } catch (error) {
-        console.log(error);    
+        console.log(error)   
     }
 }
 
@@ -59,6 +59,20 @@ export const getHistoryCoin = async (days:string, idCoin:string) =>{
         }
         
     } catch (error) {
-        console.log(error);   
+        console.log(error)  
+    }
+}
+
+export const getGlobalData = async () => {
+    try {
+        const { data } = await axios.get(GET_GLOBAL_DATA)
+        const globalData:GlobalDataType = {
+            market_cap:data.data.total_market_cap.usd,
+            volumen_24hs:data.data.total_volume.usd,
+            market_change_24hs: data.data.market_cap_change_percentage_24h_usd
+        }
+        return globalData
+    } catch (error) {
+        
     }
 }

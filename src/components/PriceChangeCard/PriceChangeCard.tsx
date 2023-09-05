@@ -1,9 +1,9 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { CoinDataDetail } from "../../types";
+import React from "react"
+import { Text, View } from "react-native"
+import { CoinDataDetail } from "../../types"
 
-import { commonStyles } from "./styles";
-import { ThemeContext } from "../../themes/ThemeContext";
+import { commonStyles } from "./styles"
+import { ThemeContext } from "../../themes/ThemeContext"
 
 
 const PriceChangeCard:React.FC <CoinDataDetail> = ({

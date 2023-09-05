@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
-import { Image, Text, View } from "react-native";
+import React, {useContext} from "react"
+import { Image, Text, View } from "react-native"
 
-import { CoinDataDetail } from "../../types";
-import { commonStyles } from "./styles";
-import { ThemeContext } from "../../themes/ThemeContext";
+import { CoinDataDetail } from "../../types"
+import { commonStyles } from "./styles"
+import { ThemeContext } from "../../themes/ThemeContext"
 
 
 const CustomHeaderDetail: React.FC <CoinDataDetail> = ({ symbol, name, image }) => {
