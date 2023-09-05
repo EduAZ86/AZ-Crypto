@@ -1,16 +1,40 @@
-import React, {FC} from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState} from "react";
+import {  Text, View } from "react-native";
 import { CoinDataDetail } from "../../types";
-import { font_color, highlight_color_rgb, secondary_color } from "../../constants/colors";
-import { roboto_bold, roboto_light, roboto_regular } from "../../constants/fonts";
-import { Dimensions } from "react-native";
+
+import { commonStyles } from "./styles";
+import { ThemeContext } from "../../themes/ThemeContext";
+
+const PriceCard: React.FC<CoinDataDetail> = ({ current_price }) => {
+
+    const {currentTheme} = React.useContext(ThemeContext)
+    const styles = commonStyles(currentTheme)
 
 
+  const [previousPrice, setPreviousPrice] = useState<number | null>(null);
+  const [currentPrice, setCurrentPrice] = useState<number | null>(null);
+  const [priceChangePercentage, setPriceChangePercentage] = useState<number | null>(null);
 
-const PriceCard:FC<CoinDataDetail> = ({symbol, name ,current_price, price_change_percentage_24h,image}) => {
+  useEffect(() => {
 
+    if (previousPrice && currentPrice) {
+      const changePercentage = ((currentPrice - previousPrice) / previousPrice) * 100;
+      setPriceChangePercentage(changePercentage);
+    }
 
-    return(
+    setPreviousPrice(currentPrice);
+    if (current_price) {
+        setCurrentPrice(current_price);        
+    }
+
+    return () => {
+      setPreviousPrice(null);
+      setCurrentPrice(null);
+      setPriceChangePercentage(null);
+    };
+  }, [current_price]);
+
+  return (
         <View
             style={styles.container}        >
 
@@ -19,69 +43,22 @@ const PriceCard:FC<CoinDataDetail> = ({symbol, name ,current_price, price_change
             >
                 <Text
                     style={styles.price}
-                >{`${current_price} U$d`}</Text>
-                { price_change_percentage_24h !== undefined && (price_change_percentage_24h > 0
+                >{`${currentPrice} U$d`}</Text>
+                { priceChangePercentage && (priceChangePercentage > 0
                     ?   <Text
                             style={[styles.change, styles.green]}
-                        >{`⬆ ${price_change_percentage_24h?.toFixed(2)} %`}</Text>
+                        >{`⬆ ${priceChangePercentage?.toFixed(2)} %`}</Text>
                     :   <Text
                     style={[styles.change, styles.red]}
-                        >{`⬇ ${price_change_percentage_24h?.toFixed(2)} %`}</Text>
+                        >{`⬇ ${priceChangePercentage?.toFixed(2)} %`}</Text>
                 )}
                 <Text
                     style={styles.period}
-                >24h</Text>     
+                >30s</Text>     
             </View>
 
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container:{
-        width:'100%',
-        height:70,
-        display:'flex',
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-around',  
-        borderWidth:1,
-        borderRadius:12,
-        padding:5,
-        borderColor:`rgba(${highlight_color_rgb},0.3)`,
-        
-       
-    },   
-    priceContainer:{      
-        width:'95%',
-        display:'flex',
-        flexDirection:'row',
-        alignItems:'center',        
-        justifyContent:'space-around'
-    },
-    price:{
-        color:font_color,
-        fontSize:40,
-        fontFamily:roboto_bold
-    },
-    change:{
-        color:font_color,
-        fontSize:20,
-        fontFamily:roboto_regular
-    },
-    green:{
-        color:'green'
-    },
-    red:{
-        color:'red'
-    },
-    period:{
-        color:font_color,
-        fontSize:10,
-        opacity:0.5,
-        fontFamily:roboto_regular
-    }
-
-})
 
 export default PriceCard 

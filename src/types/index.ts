@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type CoinDataShort = {
     id: string;
     name?: string;
@@ -13,6 +15,7 @@ export type CoinDataDetail = {
     name?: string;
     symbol?:string;
     image?:string;
+    
     description?: string;
     public_notice?: string;
     current_price?:number;
@@ -24,7 +27,8 @@ export type CoinDataDetail = {
     total_volume?:number;
     fully_diluted_valuation?:number;
     high_24h?:number;
-    low_24h?: number;   
+    low_24h?: number; 
+
     price_change_percentage_24h?: number;
     price_change_percentage_7d?: number;
     price_change_percentage_30d?: number;
@@ -44,3 +48,27 @@ export type LineChartProps = {
   }
 
 export type HistoryPriceCoin = number[];
+
+export type ColorPalette = {
+    primary_color:string;
+    secondary_color:string;    
+    highlight_color:string;    
+    font_color:string;
+    rgbPrimary:string;
+    rgbSecondary:string;
+    rgbHighlight:string;
+    rgbFontColor:string;
+}
+
+
+export type ThemeContextType = {
+    theme: string;
+    toggleTheme: () => void;
+    currentTheme: ColorPalette;
+
+  }
+  
+export interface ThemeProviderProps {
+    children: ReactNode;
+  }
+

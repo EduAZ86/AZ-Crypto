@@ -1,16 +1,17 @@
-import React, { useEffect, useRef} from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useContext} from "react";
+import { View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { LineChartProps } from "../../types";
-import { font_color, font_color_rgb, highlight_color, highlight_color_rgb, primary_color, secondary_color } from "../../constants/colors";
 import { Dimensions } from "react-native";
-import { roboto_bold, roboto_light, roboto_regular } from "../../constants/fonts";
-
-const contanierWidth = Dimensions.get("window").width;
+import { commonStyles } from "./styles";
+import { ThemeContext } from "../../themes/ThemeContext";
 
 const Graph: React.FC<LineChartProps> = ({data,labels}) => {
-    
-    console.log(data);
+  const contanierWidth = Dimensions.get("window").width;
+  const {currentTheme} = useContext(ThemeContext)
+
+  const styles = commonStyles(currentTheme, contanierWidth)
+  
     const label = labels
     const dataCoin = [
         {data: data}
@@ -43,15 +44,15 @@ const Graph: React.FC<LineChartProps> = ({data,labels}) => {
         
         
           chartConfig={{           
-            backgroundGradientFrom: secondary_color,
+            backgroundGradientFrom: currentTheme.secondary_color,
             backgroundGradientFromOpacity:1,
 
-            backgroundGradientTo:  secondary_color,
+            backgroundGradientTo:  currentTheme.secondary_color,
             backgroundGradientToOpacity:1,
 
             fillShadowGradientFromOffset:0.2,
 
-            fillShadowGradientTo:highlight_color,
+            fillShadowGradientTo:currentTheme.highlight_color,
             fillShadowGradientToOpacity:0.8,
 
             strokeWidth:1,
@@ -59,8 +60,8 @@ const Graph: React.FC<LineChartProps> = ({data,labels}) => {
 
             
             
-            color: () => `rgba(${highlight_color_rgb}, ${0.8})`,
-            labelColor: () => `rgba(${font_color_rgb}, ${0.8})`,
+            color: () => `rgba(${currentTheme.rgbHighlight}, ${0.8})`,
+            labelColor: () => `rgba(${currentTheme.rgbFontColor}, ${0.8})`,
             style: {
               borderRadius: 16,
               
@@ -70,7 +71,7 @@ const Graph: React.FC<LineChartProps> = ({data,labels}) => {
             },       
             propsForBackgroundLines:{
                 opacity:0.2,
-                stroke:font_color,
+                stroke:currentTheme.font_color,
                 strokeDasharray:'none',
                 strokeWidth:0.5,                    
             },
@@ -82,22 +83,14 @@ const Graph: React.FC<LineChartProps> = ({data,labels}) => {
           }}
          
         style={{      
-            marginVertical: 8,
-            borderRadius: 16,
-                      
+            
+            borderRadius: 12,
+            marginBottom:9,
+            marginTop:5          
         }}
         />
       </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container:{
-        width:contanierWidth,
-        display: "flex",
-        fontFamily:roboto_regular,
-        marginBottom: -52,        
-    }
-})
 
 export default Graph

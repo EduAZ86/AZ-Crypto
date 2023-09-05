@@ -1,8 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { CoinDataDetail } from "../../types";
-import { font_color, highlight_color, highlight_color_rgb, primary_color, secondary_color } from "../../constants/colors";
-import { roboto_regular } from "../../constants/fonts";
+
+import { commonStyles } from "./styles";
+import { ThemeContext } from "../../themes/ThemeContext";
+
 
 const PriceChangeCard:React.FC <CoinDataDetail> = ({
     price_change_percentage_24h,
@@ -18,6 +20,10 @@ const PriceChangeCard:React.FC <CoinDataDetail> = ({
         price_change_percentage_60d,
         price_change_percentage_1y,
     ]
+    const {currentTheme} = React.useContext(ThemeContext)
+    const styles = commonStyles(currentTheme)
+
+
     return(
         <View style={styles.container}>
             
@@ -69,52 +75,5 @@ const PriceChangeCard:React.FC <CoinDataDetail> = ({
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container:{
-        width:'100%',
-        height:50,
-        display:'flex',
-        flexDirection:'row',
-        paddingHorizontal:5,
-        backgroundColor:secondary_color,
-        borderRadius:12,
-        marginTop:5,
-        alignItems:'center',
-        justifyContent:'space-around'
-    },
-    card:{
-        width:75,
-        height:40,
-        display:'flex',
-        flexDirection:'column',
-        backgroundColor:primary_color,        
-        borderColor:`rgba(${highlight_color_rgb},0.3)`,
-        borderWidth:1,
-        borderRadius:12,
-        justifyContent:'center',
-        gap:1
-    },
-    change:{
-        textAlign:'center',
-        fontFamily:roboto_regular,
-        fontSize:12,
-    },
-    green:{
-        color:'green',
-        opacity:1
-    },
-    red:{
-        color:'red',
-        opacity:1
-    },
-    range:{
-        textAlign:'center',
-        fontFamily:roboto_regular,
-        color:font_color,
-        fontSize:9,
-        opacity:0.8
-    },
-})
 
 export default PriceChangeCard

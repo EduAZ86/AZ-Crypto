@@ -1,8 +1,10 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { CoinDataDetail } from "../../types";
-import { font_color, highlight_color_rgb, primary_color, secondary_color } from "../../constants/colors";
-import { roboto_regular } from "../../constants/fonts";
+
+import { commonStyles } from "./styles";
+import { ThemeContext } from "../../themes/ThemeContext";
+
 
 const MoreAboutCoin:React.FC <CoinDataDetail> = ({
     description,    
@@ -14,6 +16,8 @@ const MoreAboutCoin:React.FC <CoinDataDetail> = ({
     total_volume,
     fully_diluted_valuation,
 }) => {
+    const {currentTheme} = React.useContext(ThemeContext)
+    const styles = commonStyles(currentTheme)
 
     return(
         <View style={styles.container}>
@@ -86,73 +90,5 @@ const MoreAboutCoin:React.FC <CoinDataDetail> = ({
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container:{   
-        height:'50%',      
-        display:'flex',
-        flexDirection:'column',
-        borderRadius:12,  
-        backgroundColor:secondary_color,
-        marginTop:3,
-        padding:5,      
-      
-    },
-    scrollView:{
-        flex:1,        
-    },
-    slimContainer: {
-        width: '100%',
-        height:40,
-        display: 'flex',
-        flexDirection: 'row',
-        backgroundColor: primary_color,
-        borderRadius: 12,
-        borderColor:`rgba(${highlight_color_rgb},0.3)`,
-        borderWidth:0.5,    
-        marginVertical:5,
-        alignItems:'center',
-        justifyContent:'space-between',
-        paddingHorizontal:20
-      }
-      ,
-    slimTitle:{
-        fontFamily:roboto_regular,
-        color:font_color,
-        fontSize:13,
-        opacity:0.5,
-        textAlign:'left'
-    },
-    slimData:{
-        fontFamily:roboto_regular,
-        color:font_color,
-        fontSize:16,
-        opacity:0.5,
-        textAlign:'right'
-    },
-    descriptionContainer:{
-        minHeight: 80,
-        backgroundColor: primary_color,
-        borderRadius: 12,
-        marginVertical:5,
-        padding:5,
-        borderWidth:0.5,
-        borderColor:`rgba(${highlight_color_rgb},0.3)`,
-    },
-    descriptionTitle:{
-        fontFamily:roboto_regular,
-        color:font_color,
-        fontSize:13,
-        opacity:0.8,
-        textAlign:'left'
-    },
-    descriptionText:{
-        fontFamily:roboto_regular,
-        color:font_color,
-        fontSize:11,
-        opacity:0.5,
-        textAlign:'justify'
-    }
-})
 
 export default MoreAboutCoin

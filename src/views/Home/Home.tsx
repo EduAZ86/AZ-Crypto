@@ -1,12 +1,18 @@
 import React,{useEffect, useState} from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, View } from 'react-native'
 import Header from '../../components/Header/Header'
 import { CoinDataShort } from '../../types'
 import { getAllDataCoins } from '../../utils/fetching/fetching'
 
-import { font_color, highlight_color, primary_color, secondary_color } from '../../constants/colors'
 import SlimCoinCard from '../../components/SlimCoinCard/SlimCoinCard'
+
+import { commonStyles } from './styles'
+import { ThemeContext } from '../../themes/ThemeContext'
+
 const Home = () => {
+
+    const {currentTheme} = React.useContext(ThemeContext)
+    const styles = commonStyles(currentTheme)
 
     const [allCoinsDataShort, setAllCoinsDataShort] = useState<CoinDataShort[]>([])
     useEffect(() => {
@@ -20,8 +26,7 @@ const Home = () => {
         }
         if (allCoinsDataShort.length === 0) {
             loadDataCoins()
-        }
-        
+        }        
         const intervalId = setInterval(loadDataCoins, 30000);    
     return () => {
         setAllCoinsDataShort([])
@@ -46,13 +51,5 @@ const Home = () => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor: primary_color
-    },
-
-})
 
 export default Home

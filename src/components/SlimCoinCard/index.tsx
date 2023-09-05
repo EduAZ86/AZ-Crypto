@@ -1,1 +1,1 @@
-export {default} from './SlimeCoinCard'
+export {default} from './SlimCoinCard'
